@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: health-service
+  labels:
+    app.kubernetes.io/name: health-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: health-service
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: health-service
+    spec:
+      containers:
+        - name: health-service
+          image: docker.io/library/health:1.0.0
+          ports:
+            - containerPort: 8080
